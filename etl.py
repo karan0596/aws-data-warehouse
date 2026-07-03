@@ -11,12 +11,26 @@ from sql_queries import (
 
 
 def load_staging_tables(cur, conn):
+    """ Load data into the staging tables. 
+    
+    Args: 
+        cur: Database cursor for executing SQL queries. 
+        conn: Database connection for committing changes.
+    
+    """
     for query in copy_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def insert_tables(cur, conn):
+    """ Insert data from the staging tables into the analytics tables. 
+    
+    Args: 
+        cur: Database cursor for executing SQL queries. 
+        conn: Database connection for committing changes. 
+    """
+    
     for query in insert_table_queries:
         cur.execute(query)
         conn.commit()
@@ -24,6 +38,14 @@ def insert_tables(cur, conn):
 
         
 def run_analytics(cur, conn):
+    """
+    Run predefined analytics queries and print a report.
+
+    Args:
+        cur: Database cursor for executing SQL queries.
+        conn: Database connection for committing changes.
+    """
+    
     print("\n================ ANALYTICS REPORT ================\n")
 
     # 1. Most played song
@@ -65,6 +87,11 @@ def run_analytics(cur, conn):
     
 
 def main():
+    """ 
+    Load data, populate the analytics tables, and run analytics queries. 
+    
+    """
+    
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 
