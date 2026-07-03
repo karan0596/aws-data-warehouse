@@ -57,7 +57,7 @@ staging_songs_table_create = ("""
 
 songplay_table_create = ("""
     CREATE TABLE IF NOT EXISTS songplays (
-        songplay_id     VARCHAR,
+        songplay_id     VARCHAR NOT NULL,
         start_time      TIMESTAMP,
         user_id         INTEGER,
         level           VARCHAR,
@@ -65,49 +65,54 @@ songplay_table_create = ("""
         artist_id       VARCHAR(255),
         session_id      INTEGER,
         location        VARCHAR,
-        useragent       VARCHAR 
+        useragent       VARCHAR,
+        PRIMARY KEY (songplay_id)
     )
 """)
 
 user_table_create = ("""
     CREATE TABLE IF NOT EXISTS users (
-        user_id        INTEGER,
+        user_id        INTEGER NOT NULL,
         first_name     VARCHAR,
         last_name      VARCHAR,
         gender         VARCHAR,
-        level          VARCHAR
+        level          VARCHAR,
+        PRIMARY KEY (user_id)
     )
 """)
 
 song_table_create = ("""
     CREATE TABLE IF NOT EXISTS songs (
-        song_id        VARCHAR(255),
+        song_id        VARCHAR(255) NOT NULL,
         title          VARCHAR(500),
         artist_id      VARCHAR(255),
         year           INTEGER,
-        duration       NUMERIC
+        duration       NUMERIC,
+        PRIMARY KEY (song_id)
     )
 """)
 
 artist_table_create = ("""
     CREATE TABLE IF NOT EXISTS artists (
-        artist_id      VARCHAR(255),
+        artist_id      VARCHAR(255) NOT NULL,
         name           VARCHAR(500),
         location       VARCHAR(500),
         latitude       NUMERIC,
-        longitude      NUMERIC
+        longitude      NUMERIC,
+        PRIMARY KEY (artist_id)
     )
 """)
 
 time_table_create = ("""
     CREATE TABLE IF NOT EXISTS time (
-        start_time    TIMESTAMP,
+        start_time    TIMESTAMP NOT NULL,
         hour          INTEGER,
         day           INTEGER,
         week          INTEGER,
         month         INTEGER,
         year          INTEGER,
-        weekday       INTEGER
+        weekday       INTEGER,
+        PRIMARY KEY (start_time)
     )
 """)
 
