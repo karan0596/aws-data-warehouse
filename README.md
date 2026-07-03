@@ -11,6 +11,55 @@ The goal of this project is to build an ETL pipeline that extracts data from S3,
 
 This enables Sparkify’s analytics team to efficiently analyze user behavior, song popularity, and listening trends.
 
+## 🚀 How to Run
+
+### 1️⃣ Clone repository
+```
+git clone <repo-url>
+cd <repo-name>
+```
+
+### 2️⃣ Configure credentials
+
+Update dwh.cfg:
+```
+[CLUSTER]
+HOST=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+DB_PORT=
+
+[IAM_ROLE]
+ARN=
+
+[S3]
+LOG_DATA=
+LOG_JSONPATH=
+SONG_DATA=
+REGION=
+```
+
+### 3️⃣ Create tables
+```
+python create_tables.py
+```
+
+### 4️⃣ Run ETL pipeline & analytics report
+```
+python etl.py
+```
+
+## 📁 Project Structure
+```
+├── create_tables.py      # Schema creation (DDL)
+├── etl.py                # ETL pipeline (Staging → Warehouse)
+├── sql_queries.py        # Centralized SQL repository 
+├── dwh.cfg               # Configuration file (excluded from Git)
+├── README.md
+
+```
+
 ## ❓ Project Discussion Question
 
 ### Question
