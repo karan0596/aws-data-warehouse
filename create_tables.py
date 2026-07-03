@@ -4,18 +4,36 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def drop_tables(cur, conn):
+    """ Drop all tables defined in the drop_table_queries list.
+    
+    Args:
+        cur: Database cursor for executing SQL queries.
+        conn: Database connection for committing changes.
+    """
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def create_tables(cur, conn):
+    """ Create all tables defined in the create_table_queries list. 
+    
+    Args:
+        cur: Database cursor for executing SQL queries.
+        conn: Database connection for committing changes.
+    
+    """
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def main():
+    """
+    The function reads the cluster configuration from the dwh.cfg file  establishes a database connection, drops       existing tables, creates new tables, and then closes the connection. 
+    
+    """
+    
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 
